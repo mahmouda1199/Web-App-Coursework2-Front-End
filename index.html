@@ -139,6 +139,16 @@
                         TotalBookedPlace: [],
                     }
                 },
+                created:function(){
+                    fetch('http://localhost:3000/collection/products').then(
+                        function(response) {
+                            console.log('Data is transferring');
+                            response.json().then(
+                                function(json){
+                                    webstore.products = json
+                                    console.log(json);
+                                });
+                            })},
                 methods: {
                     sortProd(key, direction){
                 this.sort = `${key} > ${direction}`

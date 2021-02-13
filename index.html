@@ -140,7 +140,7 @@
                     }
                 },
                 created:function(){
-                    fetch('http://localhost:3000/collection/products').then(
+                    fetch('https://webappcw2.herokuapp.com/collection/products').then(
                         function(response) {
                             console.log('Data is transferring');
                             response.json().then(
@@ -189,7 +189,7 @@
                     alert('Place have been booked');
                     this.order['productsorders'].push(this.cart)
                     this.order['TotalBookedPlace'].push(this.cart.length)
-                    fetch('http://localhost:3000/collection/productsorders', {
+                    fetch('https://webappcw2.herokuapp.com/collection/productsorders', {
                         method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -199,7 +199,7 @@
                 for (let index = 0; index < this.cart.length; index++) {
                         id = this.cart[index]._id;
                         availableInventory =this.cart[index].availableInventory-this.cart[index].Inventory;
-                        fetch('http://localhost:3000/collection/products/' + id, {
+                        fetch('https://webappcw2.herokuapp.com/collection/products/' + id, {
                         method: 'PUT',
                         headers: {
                             'Content-Type' : 'application/json',

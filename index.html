@@ -186,6 +186,15 @@
                 },
                 submitForm() {
                     alert('Place have been booked');
+                    this.order['productsorders'].push(this.cart)
+                    this.order['TotalBookedPlace'].push(this.cart.length)
+                    fetch('http://localhost:3000/collection/productsorders', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.order),
+                });
                 },
              },
              computed: {

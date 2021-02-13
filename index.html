@@ -160,6 +160,7 @@
                },
                addToCart(products) {
                     this.cart.push(products);
+                    products.Inventory++;
                 },
                 canAddToCart(product) {
                     return product.availableInventory > this.cartCount(product);
@@ -195,6 +196,18 @@
                     },
                     body: JSON.stringify(this.order),
                 });
+                for (let index = 0; index < this.cart.length; index++) {
+                        id = this.cart[index]._id;
+                        availableInventory =this.cart[index].availableInventory-this.cart[index].Inventory;
+                        fetch('http://localhost:3000/collection/products/' + id, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type' : 'application/json',
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        body: JSON.stringify({"availableInventory":availableInventory}),
+                    });
+                    };
                 },
              },
              computed: {
